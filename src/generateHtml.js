@@ -9,7 +9,7 @@ const generateEmployeeInfo = function (name, role, id, email, extraInfo) {
             <div class = "employee-header">
                 <div class="employee-name>
                     ${name}
-                <div>
+                </div>
                 <div class="employee-role>
                     <div class="role-icon-${role}></div>
                     <div class="role-description>
