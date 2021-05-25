@@ -7,25 +7,25 @@ const generateEmployeeInfo = function (name, role, id, email, extraInfo) {
   return `
         <div class="employee-container">
             <div class = "employee-header">
-                <div class="employee-name>
+                <div class="employee-name">
                     ${name}
                 </div>
-                <div class="employee-role>
-                    <div class="role-icon-${role}></div>
-                    <div class="role-description>
+                <div class="employee-role">
+                    <div class="role-icon-${role}"></div>
+                    <div class="role-description">
                         ${role}
                     </div>
                 </div>
             </div>
             <div class = "employee-content">
-                <div class="employee-card>
-                    <div class="employee-id>
+                <div class="employee-card">
+                    <div class="employee-id">
                         ${id}
                     </div>
                     <div class="employee-email">
                         ${email}
                     </div>
-                    <div class="extra-info>
+                    <div class="extra-info">
                         ${extraInfo}
                     </div>
                 </div>
@@ -104,7 +104,7 @@ const getHtmlForTeam = function (teamData) {
         </div>
       </header>
       <main class="team-info">
-        <div class = "manager-row">)}
+        <div class = "manager-row">
             ${generateManagerHtml(teamData.managers)}
         </div>
         <div class = "engineer-row">
