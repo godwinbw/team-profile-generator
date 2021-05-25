@@ -7,40 +7,40 @@ const testGithub = "wattsy";
 const testRole = "Engineer";
 
 test("creates an Engineer object", () => {
-  const employee = new Engineer(testName, testId, testEmail, testGithub);
+  const engineer = new Engineer(testName, testId, testEmail, testGithub);
 
-  expect(employee.name).toBe(testName);
-  expect(employee.id).toBe(testId);
-  expect(employee.email).toBe(testEmail);
-  expect(employee.github).toBe(testGithub);
+  expect(engineer.name).toBe(testName);
+  expect(engineer.id).toBe(testId);
+  expect(engineer.email).toBe(testEmail);
+  expect(engineer.github).toBe(testGithub);
 });
 
 test("check getName function", () => {
-  const employee = new Engineer(testName, testId, testEmail, testGithub);
+  const engineer = new Engineer(testName, testId, testEmail, testGithub);
 
-  expect(employee.getName()).toBe(testName);
+  expect(engineer.getName()).toBe(testName);
 });
 
 test("check getId function", () => {
-  const employee = new Engineer(testName, testId, testEmail, testGithub);
+  const engineer = new Engineer(testName, testId, testEmail, testGithub);
 
-  expect(employee.getId()).toBe(testId);
+  expect(engineer.getId()).toBe(testId);
 });
 
 test("check getEmail function", () => {
-  const employee = new Engineer(testName, testId, testEmail, testGithub);
+  const engineer = new Engineer(testName, testId, testEmail, testGithub);
 
-  expect(employee.getEmail()).toBe(testEmail);
+  expect(engineer.getEmail()).toBe(testEmail);
 });
 
 test("check getRole function", () => {
-  const employee = new Engineer(testName, testId, testEmail, testGithub);
+  const engineer = new Engineer(testName, testId, testEmail, testGithub);
 
-  expect(employee.getRole()).toBe(testRole);
+  expect(engineer.getRole()).toBe(testRole);
 });
 
 test("check getGithub function", () => {
-  const employee = new Engineer(testName, testId, testEmail, testGithub);
+  const engineer = new Engineer(testName, testId, testEmail, testGithub);
 
-  expect(employee.getGithub()).toBe(testGithub);
+  expect(engineer.getGithub()).toBe(testGithub);
 });
