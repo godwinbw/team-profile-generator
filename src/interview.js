@@ -166,16 +166,79 @@ const promptSelection = function (teamData) {
   });
 };
 
-// Interview
+// TEST DATA
+const getTestData = function () {
+  var testData = [];
+  testData.managers = [];
+  testData.engineers = [];
+  testData.interns = [];
 
-const interview = function () {
-  var teamData = [];
-  return promptManager(teamData).then(async function () {
-    do {
-      keepAdding = await promptSelection(teamData);
-    } while (keepAdding);
-    return teamData;
+  // add the manager
+  testData.managers.push({
+    name: "Rocky Balboa",
+    "employee-id": "101",
+    email: "rocky@rock.it",
+    "office-number": "367-4309",
   });
+
+  // add engineer 1
+  testData.engineers.push({
+    name: "thomas edison",
+    "employee-id": "102",
+    email: "light@lettherebe.com",
+    "github-username": "teddyboy",
+  });
+
+  // add engineer 2
+  testData.engineers.push({
+    name: "thomas edison",
+    "employee-id": "102",
+    email: "light@lettherebe.com",
+    "github-username": "teddyboy",
+  });
+
+  // add intern 1
+  testData.interns.push({
+    name: "chadwick worthington",
+    "employee-id": "201",
+    email: "ching@chingching.com",
+    school: "harvard",
+  });
+
+  // add intern 2
+  testData.interns.push({
+    name: "sally mcdownsy",
+    "employee-id": "202",
+    email: "sallygirl",
+    school: "dusty culvert community college",
+  });
+
+  return testData;
+};
+
+//
+// Interview Function
+//
+// calling interview function with value TRUE will use inquirier prompts to collect user data
+// calling intervie function with value FALSE will supply test data
+
+const interview = function (useRealData) {
+  var teamData = [];
+
+  if (!useRealData) {
+    // we want to use test data, just return a promise that resolves with test data
+    return new Promise((resolve, reject) => {
+      resolve(getTestData());
+    });
+  } else {
+    // we want to use data collected from the user, use the prompt functions to return data
+    return promptManager(teamData).then(async function () {
+      do {
+        keepAdding = await promptSelection(teamData);
+      } while (keepAdding);
+      return teamData;
+    });
+  }
 };
 
 /*
@@ -188,6 +251,11 @@ promptManager(teamData).then(async function () {
   console.log("finished adding data");
   console.log(teamData);
 });
+
+
+var testData = getTestData();
+console.log(testData);
+
 */
 
 module.exports = interview;
