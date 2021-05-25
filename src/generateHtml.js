@@ -3,33 +3,45 @@ const Engineer = require("../lib/Engineer.js");
 const Intern = require("../lib/Intern.js");
 
 // we will generate same html structure for each employee, and just supply whatever extra info is unique to each employee type
-const generateEmployeeInfo = function (name, role, id, email, extraInfo) {
+const generateEmployeeInfo = function (
+  name,
+  roleIcon,
+  role,
+  id,
+  email,
+  extraInfo
+) {
   return `
         <div class="employee-container">
-            <div class = "employee-header">
-                <div class="employee-name">
-                    ${name}
-                </div>
-                <div class="employee-role">
-                    <div class="role-icon-${role}"></div>
-                    <div class="role-description">
-                        ${role}
-                    </div>
-                </div>
-            </div>
-            <div class = "employee-content">
-                <div class="employee-card">
-                    <div class="employee-id">
-                        ${id}
-                    </div>
-                    <div class="employee-email">
-                        ${email}
-                    </div>
-                    <div class="extra-info">
-                        ${extraInfo}
-                    </div>
-                </div>
-            </div>
+            <div class="employee-card">
+              <div class = "employee-header">
+                  <div class="employee-name">
+                      ${name}
+                  </div>
+                  <div class="employee-role">
+                      <div class="role-icon">
+                          ${roleIcon}
+                      </div>
+                      <div class="role-description">
+                          ${role}
+                      </div>
+                  </div>
+              </div>
+              <div class = "employee-content">
+                  <div class="employee-detail">
+                      <div class="employee-id">
+                          ID: ${id}
+                      </div>
+                      <div class="employee-email">
+                          <p>Email: </p>
+                          <a href="mailto:${email}">${email}</a>
+                      </div>
+                      <div class="extra-info">
+                          ${extraInfo}
+                      </div>
+                  </div>
+              </div>
+          </div>
         </div>
     `;
 };
@@ -41,10 +53,11 @@ const generateManagerHtml = function (managers) {
       managerHtml +
       generateEmployeeInfo(
         manager.getName(),
+        `<i class="fas fa-mug-hot"></i>`,
         manager.getRole(),
         manager.getId(),
         manager.getEmail(),
-        manager.getOfficeNumber()
+        `Office number : ${manager.getOfficeNumber()}`
       );
   });
   return managerHtml;
@@ -57,10 +70,11 @@ const generateEngineerHtml = function (engineers) {
       engineerHtml +
       generateEmployeeInfo(
         engineer.getName(),
+        `<i class="fas fa-glasses"></i>`,
         engineer.getRole(),
         engineer.getId(),
         engineer.getEmail(),
-        engineer.getGithub()
+        `<p>Github: </p><a href="https://github.com/${engineer.getGithub()}" target="_blank">${engineer.getGithub()}</a>`
       );
   });
   return engineerHtml;
@@ -73,10 +87,11 @@ const generateInternsHtml = function (interns) {
       internHtml +
       generateEmployeeInfo(
         intern.getName(),
+        `<i class="fas fa-user-graduate"></i>`,
         intern.getRole(),
         intern.getId(),
         intern.getEmail(),
-        intern.getSchool()
+        `School: ${intern.getSchool()}`
       );
   });
   return internHtml;
@@ -104,20 +119,17 @@ const getHtmlForTeam = function (teamData) {
         </div>
       </header>
       <main class="team-info">
-        <div class = "manager-row">
+        <div class = "employee-row" id="managers">
             ${generateManagerHtml(teamData.managers)}
         </div>
-        <div class = "engineer-row">
+        <div class = "employee-row" id="engineers">
             ${generateEngineerHtml(teamData.engineers)}
         </div>
-        <div class = "interns">
+        <div class = "employee-row" id="interns">
             ${generateInternsHtml(teamData.interns)}
         </div>
       </main>
 
-      <footer class="container text-center py-3">
-        <h3 class="text-dark">Generated ${new Date().toLocaleString()}</h3>
-      </footer>
     </body>
     </html>
     `;
