@@ -3,12 +3,12 @@ const fs = require("fs").promises;
 const putHtmlAndCssInDestFolder = function (teamHtml) {
   return new Promise((resolve, reject) => {
     //first save our html file in the destination directory, with name index.html
-    fs.writeFile("./dist/index.html", teamHtml)
+    fs.writeFile("./docs/index.html", teamHtml)
       .then(() => {
         console.log("index.html created");
 
         // now we copy css file over to dist directory
-        fs.copyFile("./src/style.css", "./dist/style.css")
+        fs.copyFile("./src/style.css", "./docs/style.css")
           .then(() => {
             //now we are done
             console.log("style sheet copied successfully");

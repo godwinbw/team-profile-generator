@@ -5,7 +5,7 @@ const putHtmlAndCssInDestFolder = require("./src/putHtmlAndCssInDestFolder");
 // if we pass in FALSE to interview function, we get test data (for testing / development)
 // if we pass in TRUE we get user input using inquirer functionality
 
-interview(false)
+interview(true)
   .then(function (teamData) {
     //console.log(teamData);
     generateHtml(teamData)

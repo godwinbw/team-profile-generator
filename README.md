@@ -12,54 +12,62 @@
 
 ### **Acceptance Critera**
 
-1.  User can search for a city
+1.  Automatically generate HTML & CSS for a team roster
 
         WHEN I am prompted for my team members and their information
         THEN an HTML file is generated that displays a nicely formatted team roster based on user input
 
-2.  User can see detailed weather results for a search
+2.  Emails are clickable links
 
         WHEN I click on an email address in the HTML
         THEN my default email program opens and populates the TO field of the email with the address
 
-3.  UV results are detailed
+3.  Github links open the github page in a new tab
 
         WHEN I click on the GitHub username
         THEN that GitHub profile opens in a new tab
 
-4.  User is presented with detailed 5-day forecast for a search
+4.  Team is entered when the program starts
 
         WHEN I start the application
         THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number
 
-5.  User can quickly view results of prior searches
+5.  Enter other team members after the manager is entered
 
         WHEN I enter the team manager’s name, employee ID, email address, and office number
         THEN I am presented with a menu with the option to add an engineer or an intern or to finish building my team
 
-6.  xxxx
+6.  Collect specific data for engineers
 
         WHEN I select the engineer option
         THEN I am prompted to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
 
-7.  xxx
+7.  Collect specific data for interns
 
         WHEN I select the intern option
         THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
 
-8.  xxx
+8.  The HTML & CSS is generated after the team is entered
 
         WHEN I decide to finish building my team
         THEN I exit the application, and the HTML is generated
+
+### **Notes**
+
+The HTML and CSS output is put in the "/docs" directory (instead of the normally expected "/dist" directory) so that the final HTML output file can be shown on the Github pages link.
 
 ### **Challenge Ten - code repository**
 
 <https://github.com/godwinbw/team-profile-generator>
 
+### **Challenge Ten - html output file**
+
+<https://godwinbw.github.io/team-profile-generator/>
+
 ### **Challenge Ten - screenshot**
 
-<!---
-<img src="./challenge_6_screenshot.png" style="width: 50%; height=auto;">
--->
+<img src="./screenshot.png" style="width: 50%; height=auto;">
 
 ### **Challenge Ten - demo video**
+
+<https://drive.google.com/file/d/1SHAv9ywWffoBZfYgvVYTaDIG8PcU-6k6/view>
