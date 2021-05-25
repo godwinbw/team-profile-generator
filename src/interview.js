@@ -1,4 +1,7 @@
 const inquirer = require("inquirer");
+const Manager = require("../lib/Manager.js");
+const Engineer = require("../lib/Engineer.js");
+const Intern = require("../lib/Intern.js");
 
 // this function will ensure that a question has an answer provided by the user
 const validateInputEntry = function (input) {
@@ -19,7 +22,7 @@ const managerQuestions = [
     validate: validateInputEntry,
   },
   {
-    name: "employee-id",
+    name: "id",
     type: "input",
     message: "What is the manager's employee id (Required) ?",
     validate: validateInputEntry,
@@ -31,7 +34,7 @@ const managerQuestions = [
     validate: validateInputEntry,
   },
   {
-    name: "office-number",
+    name: "officenumber",
     type: "input",
     message: "What is the manager's office number (Required) ?",
     validate: validateInputEntry,
@@ -47,8 +50,11 @@ Add a New Manager
   if (!teamData.managers) {
     teamData.managers = [];
   }
-  return inquirer.prompt(managerQuestions).then(function (newManager) {
-    teamData.managers.push(newManager);
+  return inquirer.prompt(managerQuestions).then(function (answer) {
+    // create a new manager object
+    teamData.managers.push(
+      new Manager(answer.name, answer.id, answer.email, answer.officenumber)
+    );
     return teamData;
   });
 };
@@ -63,7 +69,7 @@ const engineerQuestions = [
     validate: validateInputEntry,
   },
   {
-    name: "employee-id",
+    name: "id",
     type: "input",
     message: "What is the engineer's employee id (Required) ?",
     validate: validateInputEntry,
@@ -75,7 +81,7 @@ const engineerQuestions = [
     validate: validateInputEntry,
   },
   {
-    name: "github-username",
+    name: "github",
     type: "input",
     message: "What is the engineer's github username (Required) ?",
     validate: validateInputEntry,
@@ -91,8 +97,10 @@ Add a New Engineer
   if (!teamData.engineers) {
     teamData.engineers = [];
   }
-  return inquirer.prompt(engineerQuestions).then(function (newEngineer) {
-    teamData.engineers.push(newEngineer);
+  return inquirer.prompt(engineerQuestions).then(function (answer) {
+    teamData.engineers.push(
+      new Engineer(answer.name, answer.id, answer.email, answer.github)
+    );
     return teamData;
   });
 };
@@ -106,7 +114,7 @@ const internQuestions = [
     validate: validateInputEntry,
   },
   {
-    name: "employee-id",
+    name: "id",
     type: "input",
     message: "What is the intern's employee id (Required) ?",
     validate: validateInputEntry,
@@ -134,8 +142,10 @@ Add a New Intern
   if (!teamData.interns) {
     teamData.interns = [];
   }
-  return inquirer.prompt(internQuestions).then(function (newIntern) {
-    teamData.interns.push(newIntern);
+  return inquirer.prompt(internQuestions).then(function (answer) {
+    teamData.interns.push(
+      new Intern(answer.name, answer.id, answer.email, answer.school)
+    );
     return teamData;
   });
 };
@@ -153,11 +163,11 @@ const selectionQuestions = [
 const promptSelection = function (teamData) {
   return inquirer.prompt(selectionQuestions).then(function (answer) {
     if (answer.selection === "Add an engineer") {
-      return promptEngineer(teamData).then(function (engineerAnswers) {
+      return promptEngineer(teamData).then(function () {
         return true;
       });
     } else if (answer.selection === "Add an intern") {
-      return promptIntern(teamData).then(function (internAnswers) {
+      return promptIntern(teamData).then(function () {
         return true;
       });
     } else {
@@ -174,45 +184,35 @@ const getTestData = function () {
   testData.interns = [];
 
   // add the manager
-  testData.managers.push({
-    name: "Rocky Balboa",
-    "employee-id": "101",
-    email: "rocky@rock.it",
-    "office-number": "367-4309",
-  });
+  testData.managers.push(
+    new Manager("Rocky Balboa", "101", "rocky@rock.it", "367-5309")
+  );
 
-  // add engineer 1
-  testData.engineers.push({
-    name: "thomas edison",
-    "employee-id": "102",
-    email: "light@lettherebe.com",
-    "github-username": "teddyboy",
-  });
+  // add engineers
+  testData.engineers.push(
+    new Engineer("Thomas Edison", "102", "light@lettheirbe.com", "teddyboy")
+  );
+  testData.engineers.push(
+    new Engineer("Nikola Tesla", "108", "nikola@crazy.net", "sparky")
+  );
+  testData.engineers.push(
+    new Engineer("Eli Whitney", "112", "eli@oldguy.net", "cottonboy")
+  );
 
-  // add engineer 2
-  testData.engineers.push({
-    name: "thomas edison",
-    "employee-id": "102",
-    email: "light@lettherebe.com",
-    "github-username": "teddyboy",
-  });
+  // add interns
+  testData.interns.push(
+    new Intern("Chadwick Worthington", "201", "ching@chingching.com", "Harvard")
+  );
+  testData.interns.push(
+    new Intern(
+      "Sally McDownsy",
+      "202",
+      "sallygirl@acc.edu",
+      "Dusty Culvert Communicty College"
+    )
+  );
 
-  // add intern 1
-  testData.interns.push({
-    name: "chadwick worthington",
-    "employee-id": "201",
-    email: "ching@chingching.com",
-    school: "harvard",
-  });
-
-  // add intern 2
-  testData.interns.push({
-    name: "sally mcdownsy",
-    "employee-id": "202",
-    email: "sallygirl",
-    school: "dusty culvert community college",
-  });
-
+  // now return the data
   return testData;
 };
 
