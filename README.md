@@ -70,4 +70,10 @@ The HTML and CSS output is put in the "/docs" directory (instead of the normally
 
 ### **Challenge Ten - demo video**
 
-<https://drive.google.com/file/d/1SHAv9ywWffoBZfYgvVYTaDIG8PcU-6k6/view>
+This is a streamable link
+
+<https://streamable.com/gznb4r>
+
+The video file is also in the repo
+
+<https://github.com/godwinbw/team-profile-generator/demo-video.mp4>
